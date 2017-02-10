@@ -1,0 +1,25 @@
+{
+  "name": "inverted-index",
+  "version": "1.0.0",
+  "description": "An application that builds an index from books in a file and allows you search through the file for words in that book",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-mugorji/Inverted-Index.git"
+  },
+  "keywords": [
+    "index",
+    "search"
+  ],
+  "author": "Munachimso Ugorji",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-mugorji/Inverted-Index/issues"
+  },
+  "homepage": "https://github.com/andela-mugorji/Inverted-Index#readme"
+}
