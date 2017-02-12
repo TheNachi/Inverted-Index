@@ -41,19 +41,35 @@ An application that builds an index from a JSON array of text objects books in a
 
 
 ##Why the project is useful
-
+(to be updated)
 
 ##How to get started with the project
-### Requirements
 
+### Requirements
+* Gulp 
+* Karma 
+* Jasmine 
+* Travis CI 
+* Coveralls 
+* Hound 
+* AngularJs 
+* Bootstrap 
 
 ### Setting up the project 
+* On the web
+(to be updated)
 
+* Locally
+(to be updated)
 
 ##Limitations of the project
+(to be updated)
 
 ## Contributing to the project
+{to be updated}
 
 ## Troubleshooting & FAQ
+(to be updated)
 
 ##License
+(to be updated)
