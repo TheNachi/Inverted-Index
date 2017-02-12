@@ -9,18 +9,27 @@ An application that builds an index from a JSON array of text objects books in a
 >    [
 >
 >  {
+>
 >    "title": "Alice in Wonderland",
+>
 >    "text": "Alice falls into a rabbit hole and enters a world full of imagination."
+>
 >  },
 >
 >  {
+>
 >    "title": "The Lord of the Rings: The Fellowship of the Ring.",
+>
 >    "text": "An unusual alliance of man, elf, dwarf, wizard and hobbit seek to destroy a powerful ring."
+>
 >  },
 >
 >  {
+>
 >   "title": "The Lord of the Rings: The Fellowship of the Ring.",
+>
 >    "text": "An unusual alliance of man, elf, dwarf, wizard and hobbit seek to destroy a powerful ring."
+>
 >  }
 >
 > ]
