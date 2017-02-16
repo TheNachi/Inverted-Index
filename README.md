@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/andela-mugorji/Inverted-Index/badge.svg?branch=master)](https://coveralls.io/github/andela-mugorji/Inverted-Index?branch=master)
 # INVERTED INDEX
 
 ##Introduction
