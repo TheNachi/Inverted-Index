@@ -1,10 +1,6 @@
 body {
-    background: url('http://placekitten.com/900/900');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+	height:100%;
+	width:100%;
+	background: url(images/body-backgroundimage.jpg) no-repeat fixed;
+	background-size:cover;
 }
