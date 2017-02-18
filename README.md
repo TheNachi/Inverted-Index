@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/andela-mugorji/Inverted-Index.svg?branch=master)](https://travis-ci.org/andela-mugorji/Inverted-Index)
+[![Coverage Status](https://coveralls.io/repos/github/andela-mugorji/Inverted-Index/badge.svg?branch=master)](https://coveralls.io/github/andela-mugorji/Inverted-Index?branch=master)
 # INVERTED INDEX
 
 ##Introduction
@@ -66,3 +68,4 @@ Visit the hompage(to be provided later)
 
 ##License
 Internet Systems Consortium (ISC)
+
