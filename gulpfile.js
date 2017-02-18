@@ -1,24 +1,16 @@
 const gulp = require('gulp');
-const browserSync = require('browser-sync').create;
+const browserSync = require('browser-sync');
 
-gulp.task('browser-sync', () => {
-  browserSync.init({
-    server: {
-      baseDir: './src'
-    },
-    port: 0,
-    ui: {
-      port
-    }
-  });
+gulp.task('browserSync', () => {
+	browserSync.init({
+		server: {
+			baseDir: './src'
+		}
+	});
 });
 
-gulp.task('default', [browserSync.reload]);
-
-
-// Default task
-gulp.task('watch', () => {
-  gulp.watch(['src/*.html', 'src/css/*.css','src/js/*.js'])
-  .on('change', browserSync.reload);
+gulp.task('watch', ['browserSync'], () => {
+	gulp.watch('src/*.html', browserSync.reload);
+	gulp.watch('src/css/*.css', browserSync.reload);
+	gulp.watch('src/js/*.js', browserSync.reload);
 });
-
