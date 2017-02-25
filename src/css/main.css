@@ -18,6 +18,18 @@ header.page-header {
 
 }
 
+div.side-nav {
+	background: rgba(255, 255, 255, 0.5);
+	top:0;
+	display:block;
+	margin: 0 0 10px 0;
+	text-align:center;
+	box-shadow: 0 0 4px 0 rgba(0,0,0,.4);
+	border: 1px solid transparent;
+	color:#333;
+
+}
+
 #btn{
 	padding: 10px;
 	border:none;
@@ -30,4 +42,11 @@ header.page-header {
 	display:block;
 	outline:none;
 
+}
+
+.slideout-link{
+	background:rgba(51,122,183, .7);
+	width: 25%;
+	padding: 5px;
+	
 }
