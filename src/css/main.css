@@ -4,4 +4,13 @@ body {
 
 .side-nav {
 	padding: 10px;
+	color: #fff;
+}
+
+.input-field input[type=search] {
+    display: block;
+    line-height: inherit;
+    margin-top: 5px;
+    padding: 10px 4rem;
+    width: calc(100% - 4rem);
 }
