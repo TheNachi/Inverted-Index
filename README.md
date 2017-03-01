@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/andela-mugorji/Inverted-Index.svg?branch=master)](https://travis-ci.org/andela-mugorji/Inverted-Index)
 [![Coverage Status](https://coveralls.io/repos/github/andela-mugorji/Inverted-Index/badge.svg?branch=master)](https://coveralls.io/github/andela-mugorji/Inverted-Index?branch=master)
+[![Code Climate](https://codeclimate.com/github/andela-mugorji/Inverted-Index/badges/gpa.svg)](https://codeclimate.com/github/andela-mugorji/Inverted-Index)
 # INVERTED INDEX
 
 ##Introduction
