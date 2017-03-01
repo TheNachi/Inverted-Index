@@ -2,58 +2,142 @@
 <html lang="en">
 
 <head>
-    <title>Inverted Index</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <title>Inverted Index</title>
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abel|Lora|Open+Sans+Condensed:300|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="js/invertedindex.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </head>
 
-<body>
+<body ng-app="myIndex" ng-controller="indexController">
+    <div class="row">
+        <nav class=" red lighten-1 z-depth-2">
+            <div class="nav-wrapper container ">
+                <a href="#" class="brand-logo">Inverted Index</a>
+                <formn class="col offset-m6 m6">
+                    <div class="row">
+                        <div class="input-field">
+                            <input id="search" type="search" required ng-model="terms">
+                            <label class="label-icon" for="search"><i class="material-icons" ng-click="search()">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+        </nav>
+    </div>
 
-    <div id="container">
-        <div id="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m2 l2">
+                <div id="slide-out" class="side-nav red lighten-1 z-depth-5 scale-transition">
+                    <h4>ABOUT THE APP</h4>
+                    <p>
+                        Inverted Index builds an index from a JSON file which the User uploads. And then allows the User perform quick full text searches.
+                    </p>
+                    <h5>HOW IT WORKS</h5>
+                    <p>1. Choose a JSON file from a local directory</p>
+                    <p>2. Upload the JSON file</p>
+                    <p>3. Select a file from those already uploaded</p>
+                    <p>4. Create Index</p>
+                    <p>5. Conduct search</p>
+                </div>
+                <a class="btn-floating btn-large red lighten-1 z-depth-2 button-collapse waves-effect waves-light" data-activates="slide-out">
+                    <i class="material-icons">menu</i>
+                </a>
+            </div>
 
-            <header class="page-header">
-                <h1>INVERTED INDEXING </h1>
-            </header>
+            <div class="col s12 m4 l4">
+                <div class="file-field input-field fileUpload">
+                    <div class="btn  red lighten-1 waves-effect waves-light z-depth-2">
+                        <span>Upload</span>
+                        <input type="file" class="upload" id="uploadJSON">
+                    </div>
+                </div>
+            </div>
 
-            <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
+            <div class="col s12 m3 l3">
+                <select class="form-control" id="fileTitles" ng-model="selectedFile">
+                        <option value="nofile" disabled selected>Select a Book</option>
+                        <option ng-repeat="title in titles" value="{{title}}">{{title}}</option>
+                        <option value="all"  ng-if="titles.length > 1"> All files</option>
+                    </select>
+                <label></label>
+            </div>
 
-            <input type="file" />
-            
-            <button id="btn">Click Me!</button>
+            <div class="input-field col s12 m3 l3">
+                <a class="waves-effect waves-teal btn-flat" ng-click="createIndex()">Create Index</a>
+            </div>
 
+
+
+            <div class="col s12 m12 l12">
+
+                <h1> Index Table</h1>
+                <div class='tableArea'>
+                    <table class="table table-striped" ng-show="showTable">
+                        <thead>
+                            <th> Showing Index for {{selectedFile}}</th>
+                            <tr>
+                                <th> Keywords</th>
+                                <th ng-repeat="fileNo in docCount[selectedFile]">Document {{$index + 1}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(key, value) in filedata">
+                                <td class="divider"> {{key}}</td>
+                                <td ng-repeat="fileNo in docCount[selectedFile]">
+                                    <span ng-if="value.includes(fileNo)" class="glyphicon glyphicon-remove"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row" ng-repeat="file in searchResult">
+                    <div class='tableArea'>
+                        <table class="table table-striped" ng-show="searchResults" ng-repeat="(key, value) in file">
+                            <thead>
+                                <th> Search Results for {{key}}</th>
+                                <tr>
+                                    <th> Keywords</th>
+                                    <th ng-repeat="fileNo in docCount[selectedFile]">Document {{fileNo + 1}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(key,value) in value">
+                                    <td>{{key}}</td>
+                                    <td ng-repeat="fileNo in docCount[selectedFile]">
+                                        <span ng-if="value.includes(fileNo)" class="glyphicon glyphicon-remove"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-    <ul id="slide-out" class="side-nav">
-        <li>
-            <div class="userView">
-                <div class="background">
-                    <img src="images/office.jpg">
-                </div>
-                <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-                <a href="#!name"><span class="white-text name">John Doe</span></a>
-                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-            </div>
-        </li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-        <li><a href="#!">Second Link</a></li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li><a class="subheader">Subheader</a></li>
-        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i>How to use App</a>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/invertedindex.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>-->
+
     <script>
-        $(".button-collapse").sideNav();
+        $(document).ready(function() {
+            $(".button-collapse").sideNav();
+            $('select').material_select();
+        });
     </script>
 </body>
 
