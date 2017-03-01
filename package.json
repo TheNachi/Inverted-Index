@@ -4,7 +4,9 @@
   "description": "An application that builds an index from books in a file and allows you search through the file for words in that book",
   "main": "index.js",
   "dependencies": {
-    "jasmine-core": "^2.5.2"
+    "jasmine-core": "^2.5.2",
+    "gulp": "^3.9.1",
+    "browser-sync": "^2.18.8"
   },
   "devDependencies": {
     "browser-sync": "^2.18.8",
@@ -17,7 +19,12 @@
     "gulp": "^3.9.1",
     "jasmine-core": "^2.5.2"
   },
+  "engines": {
+    "node": "6.10.0",
+    "npm": "3.10.10"
+  },
   "scripts": {
+    "start": "node node_modules/gulp/bin/gulp watch"
   },
   "repository": {
     "type": "git",
