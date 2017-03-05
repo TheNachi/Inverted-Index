@@ -34,7 +34,7 @@ describe('Cleans up JSON file and return unique words in array', () => {
   });
 
   it('should return "an array of books with filtered contents"', () => {
-    expect(index.cleanup(`${bookToCleanUp[0].title} ${bookToCleanUp[0].text}`)).toEqual(
+    expect(index.removeDoubleWords(`${bookToCleanUp[0].title} ${bookToCleanUp[0].text}`)).toEqual(
             ['alice', 'enters', 'a']
         );
   });
