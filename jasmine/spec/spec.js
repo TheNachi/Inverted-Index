@@ -13,16 +13,16 @@ index.createIndex(gotBooks, 'got_books.json');
 
 describe('Test for validation of file', () => {
   it('Should have keys named \'title\' and \'text\' with string for values', () => {
-    expect(index.validateFile(invalidContent)).toBe('Invalid file');
-    expect(index.validateFile(invalidKey)).toBe('Invalid file ');
+    expect(index.fileValidation(invalidContent)).toBe('Invalid file');
+    expect(index.fileValidation(invalidKey)).toBe('Invalid file ');
   });
   it('Should not be an empty file', () => {
-    expect(index.validateFile(emptyArray)).toBe('Empty file');
+    expect(index.fileValidation(emptyArray)).toBe('Empty file');
   });
   it('Should not be an invalid file', () => {
-    expect(index.validateFile(invalidFile)).toBe('Invalid file');
-    expect(index.validateFile(books)).toBe('Valid file');
-    expect(index.validateFile(gotBooks)).toBe('Valid file');
+    expect(index.fileValidation(invalidFile)).toBe('Invalid file');
+    expect(index.fileValidation(books)).toBe('Valid file');
+    expect(index.fileValidation(gotBooks)).toBe('Valid file');
   });
 });
 
@@ -30,11 +30,11 @@ describe('Cleans up JSON file and return unique words in array', () => {
   const bookToCleanUp = [{ title: 'Alice , / ?', text: 'enters a a.' }];
 
   it('should return " array " for a valid json file input', () => {
-    expect(typeof (index.tokenize(`${bookToCleanUp[0].title} ${bookToCleanUp[0].text}`))).toBe(typeof ([]));
+    expect(typeof (index.cleanup(`${bookToCleanUp[0].title} ${bookToCleanUp[0].text}`))).toBe(typeof ([]));
   });
 
   it('should return "an array of books with filtered contents"', () => {
-    expect(index.tokenize(`${bookToCleanUp[0].title} ${bookToCleanUp[0].text}`)).toEqual(
+    expect(index.cleanup(`${bookToCleanUp[0].title} ${bookToCleanUp[0].text}`)).toEqual(
             ['alice', 'enters', 'a']
         );
   });
