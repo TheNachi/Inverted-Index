@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports=[
   {
     "title": "Alice in Wonderland",
@@ -16,67 +16,81 @@ module.exports=[]
 },{}],3:[function(require,module,exports){
 module.exports=[
   {
-    "title": "hello world",
-    "text": "No resources :)"
+    "title": "Lord Snow",
+    "text": "First of His Name, King of the Andals and the First Men, Lord of the Seven Kingdoms, and Protector of the Realm."
+  },
+
+  {
+    "title": "The Nights Watch Vow.",
+    "text": "Night gathers, and now my watch begins. It shall not end until my death." 
+  }
+]
+},{}],4:[function(require,module,exports){
+module.exports=[
+  {
+    "title": "I am ME",
+    "text": "And so it began in the land of the merkies"
   },
   {
-    "title": "hello world",
-    "appResources": "No resources :)"
+    "title": "I am ME",
+    "takenis": "And so it began in the land of the merkies"
   }
 ]
 
-},{}],4:[function(require,module,exports){
-// Name of the bookfile
+},{}],5:[function(require,module,exports){
+module.exports=[
+  {
+    "title": "I am ME",
+    "text": "And so it began in the land of the merkies"
+  },
+  {
+    "title": "I am ME",
+    "text": 47382
+  }
+]
+},{}],6:[function(require,module,exports){
+
+},{}],7:[function(require,module,exports){
 const books = require('../books.json');
-const emptyBook = require('../empty_book.json');
-const invalidBook = require('../invalid_book.json');
+const gotBooks = require('../got_books.json');
+const emptyArray = require('../empty_book.json');
+const invalidContent = require('../invalid_content.json');
+const invalidFile = require('../invalid_file.css');
+const invalidKey = require('../invalid_book.json');
 
-// create and instance of the InvertedIndex class
-const invertedIndex = new InvertedIndex();
-// book names
-const fileName = 'myBooks';
 
-describe('Read book Data:', () => {
-  it('should read a book.json file and assert that it is not empty', () => {
-    expect(invertedIndex.validateBook(emptyBook)).toEqual(false);
+const index = new InvertedIndex();
+
+index.createIndex(books, 'books.json');
+index.createIndex(gotBooks, 'got_books.json');
+
+describe('Test for validation of file', () => {
+  it('Should have keys named \'title\' and \'text\' with string for values', () => {
+    expect(index.fileValidation(invalidContent)).toBe('Invalid file');
+    expect(index.fileValidation(invalidKey)).toBe('Invalid file ');
   });
-  it(`should read a book.json file and assert 
-    that it is wrongly formatted`, () => {
-    expect(invertedIndex.validateBook(invalidBook)).toEqual(false);
+  it('Should not be an empty file', () => {
+    expect(index.fileValidation(emptyArray)).toBe('Empty file');
   });
-  it(`should read a book.json file and assert that it is
-   correctly formatted`, () => {
-    expect(invertedIndex.validateBook(books)).toEqual(true);
+  it('Should not be an invalid file', () => {
+    expect(index.fileValidation(invalidFile)).toBe('Invalid file');
+    expect(index.fileValidation(books)).toBe('Valid file');
+    expect(index.fileValidation(gotBooks)).toBe('Valid file');
   });
 });
 
-describe('Populate Index', () => {
-  beforeEach(() => {
-    if (invertedIndex.validateBook(books)) {
-      invertedIndex.createIndex(fileName, books);
-    }
+describe('Cleans up JSON file and return unique words in array', () => {
+  const bookToCleanUp = [{ title: 'Alice , / ?', text: 'enters a a.' }];
+
+  it('should return " array " for a valid json file input', () => {
+    expect(typeof (index.cleanup(`${bookToCleanUp[0].title} ${bookToCleanUp[0].text}`))).toBe(typeof ([]));
   });
-  it(`verifies that the index is created once the JSON
-    file has been read`, () => {
-    expect(invertedIndex.getIndex([fileName], books))
-      .toBeTruthy();
+
+  it('should return "an array of books with filtered contents"', () => {
+    expect(index.removeDoubleWords(`${bookToCleanUp[0].title} ${bookToCleanUp[0].text}`)).toEqual(
+            ['alice', 'enters', 'a']
+        );
   });
 });
 
-describe('Search Index', () => {
-  let searchResult = '';
-  beforeEach(() => {
-    searchResult = invertedIndex
-      .searchIndex('alice in and elf man azeez', [fileName]);
-  });
-  it('searches the index and returns the right results', () => {
-    expect(searchResult[fileName].alice).toEqual([0]);
-    expect(searchResult[fileName].and).toEqual([0, 1]);
-  });
-  it(`searches the index and returns no results if the 
-    search term isn't in the index`, () => {
-    expect(searchResult[fileName].azeez).toEqual([]);
-  });
-});
-
-},{"../books.json":1,"../empty_book.json":2,"../invalid_book.json":3}]},{},[4])
+},{"../books.json":1,"../empty_book.json":2,"../got_books.json":3,"../invalid_book.json":4,"../invalid_content.json":5,"../invalid_file.css":6}]},{},[7]);
