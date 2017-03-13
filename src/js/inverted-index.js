@@ -54,15 +54,15 @@ class InvertedIndex {
    */
   storeIndex(fileName, completeIndex) {
     const wordIndex = {};
-    for (const pos in completeIndex) {
-      const posToInt = parseInt(pos);
-      completeIndex[pos].forEach((word) => {
+    for (const index in completeIndex) {
+      const indexToInt = parseInt(index, 10);
+      completeIndex[index].forEach((word) => {
         if (wordIndex[word]) {
-          if (wordIndex[word].indexOf(posToInt) === -1) {
-            wordIndex[word].push(posToInt);
+          if (wordIndex[word].indexOf(indexToInt) === -1) {
+            wordIndex[word].push(indexToInt);
           }
         } else {
-          wordIndex[word] = [posToInt];
+          wordIndex[word] = [indexToInt];
         }
       });
     }

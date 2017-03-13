@@ -29,8 +29,8 @@
                             <input type="text" id="search" class="form-control" ng-model="terms" placeholder="Search">
                         </div>
                         <div class="form-group">
-                            <select class='form-control' id='fileTitles' ng-model='selectedFile'>
-                                    <option disabled selected>Search from your uploads</option>
+                            <select class='form-control' id='fileTitles'>
+                                    <option disabled selected>Search from indexed files</option>
                                     <option ng-repeat='title in titles' value='{{title}}'>{{title}}</option>
                                     <option value='all' ng-if='titles.length > 1'>All files</option>
                                 </select>
