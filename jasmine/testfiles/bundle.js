@@ -55,27 +55,9 @@ const emptyArray = require('../empty_book.json');
 const invalidContent = require('../invalid_content.json');
 const invalidKey = require('../invalid_book.json');
 
-const sampleBook = [{ title: 'Alice In Wonderland', text: 'What is she Looking for There' }];
-const sampleBook2 = [{ title: 'Al@#ice 4 @# In Wonderland', text: 'Wh#at is she Lo#$oking for Th!@ere' }];
-
 const index = new InvertedIndex();
 
-
-
 describe('Test to check if uploaded file is valid', () => {
-  const createIndexObject = index.createIndex('books.json', books);  
-  console.log(createIndexObject);
-
-  it('should return true for object type ', () => {
-    expect(createIndexObject instanceof Object).toBeTruthy();
-  });
-
-  it('should match result with alice: { 0: true }', () => {
-    expect(createIndexObject).not.toEqual(jasmine.objectContaining({
-      alice: { 0: 0 }
-    }));
-  });
-
   it('Should have keys named \'title\' and \'text\' with string for values', () => {
     expect(index.validateFile(invalidContent)).toBe(false);
     expect(index.validateFile(invalidKey)).toBe(false);
@@ -102,23 +84,136 @@ describe('Cleans up index and returns unique words in an array all lowercase', (
   });
 });
 
-// describe('Accepts File and Filecontent, converts filecontent to array and calls storeIndex on it', () => {
-  
-//   it('should return "File name and a sorted tokenized array of file contents"', () => {
-//     expect(index.createIndex(books)).toBe(
-//       index.storeIndex(sampleBook, ['alice', 'for', 'in', 'is', 'looking', 'she', 'there', 'what', 'wonderland'])
-//     );
-//   });
-//   it('should return "Invalid file"', () => {
-//     expect(index.createIndex(invalidContent)).toBe('Invalid file');
-//     expect(index.createIndex(invalidKey)).toBe('Invalid file ');
-//   });
-// });
+describe(' ', () => {
+  const createIndexObject = index.createIndex('books.json', books);
+  it('should return true for object type ', () => {
+    expect(typeof createIndexObject).toBe('object');
+  });
+  it('should return true for object type ', () => {
+    expect(typeof createIndexObject).not.toBe('array');
+  });
+  it('should return true', () => {
+    expect(createIndexObject.hasOwnProperty('alice')).toBe(true);
+    expect(createIndexObject.hasOwnProperty('wonderland')).toBe(true);
+  });
+  it('should return false', () => {
+    expect(createIndexObject.hasOwnProperty('eiie')).toBe(false);
+    expect(createIndexObject.hasOwnProperty('justapose')).toBe(false);
+  });
+  it('should return', () => {
+    expect(createIndexObject.alice).toBe[0];
+    expect(createIndexObject.rabbit).toBe[0];
+  });
+  it('should return', () => {
+    expect(createIndexObject.alliance).toBe[1];
+    expect(createIndexObject.hobbit).toBe[1];
+  });
+  it('should return', () => {
+    expect(createIndexObject.alanta).toBe(undefined);
+    expect(createIndexObject.Honda).toBe(undefined);
+  });
+});
 
-// describe('Accepts file name and array of words and returns index of words', () => {
-//   it('should return""', () => {
-//     index.storeIndex(sampleBook, ['alice', 'for', 'in', 'is', 'looking', 'she', 'there', 'what', 'wonderland']).toBe();
-//   });
-// });
+describe(' ', () => {
+  const bookArray = [['a',
+    'a',
+    'alice',
+    'alice',
+    'and',
+    'enters',
+    'falls',
+    'full',
+    'hole',
+    'imagination',
+    'in',
+    'into',
+    'of',
+    'rabbit',
+    'wonderland',
+    'world'],
+  ['a',
+    'alliance',
+    'an',
+    'and',
+    'destroy',
+    'dwarf',
+    'elf',
+    'fellowship',
+    'hobbit',
+    'lord',
+    'man',
+    'of',
+    'of',
+    'of',
+    'powerful',
+    'ring',
+    'ring',
+    'rings',
+    'seek',
+    'the',
+    'the',
+    'the',
+    'the',
+    'to',
+    'unusual',
+    'wizard']];
+  const search = index.storeIndex(books, bookArray);
+  it('should return', () => {
+    expect(typeof search).toBe('object');
+  });
+  it('should return true for object type ', () => {
+    expect(typeof search).not.toBe('string');
+  });
+  it('should return true', () => {
+    expect(search.hasOwnProperty('falls')).toBe(true);
+    expect(search.hasOwnProperty('hole')).toBe(true);
+  });
+  it('should return false', () => {
+    expect(search.hasOwnProperty('minimal')).toBe(false);
+    expect(search.hasOwnProperty('sucks')).toBe(false);
+  });
+  it('should return', () => {
+    expect(search.into).toBe[0];
+    expect(search.of).toBe[0];
+  });
+  it('should return', () => {
+    expect(search.lord).toBe[1];
+    expect(search.powerful).toBe[1];
+  });
+  it('should return', () => {
+    expect(search.darklord).toBe(undefined);
+    expect(search.nothing).toBe(undefined);
+  });
+});
+
+describe(' ', () => {
+  const get = index.getIndex(books);
+  it('should return true for object type ', () => {
+    expect(typeof get).toBe('object');
+  });
+  it('should return true for object type ', () => {
+    expect(typeof get).not.toBe('integer');
+  });
+  it('should return true', () => {
+    expect(get.hasOwnProperty('alice')).toBe(true);
+    expect(get.hasOwnProperty('wonderland')).toBe(true);
+  });
+  it('should return false', () => {
+    expect(get.hasOwnProperty('eiie')).toBe(false);
+    expect(get.hasOwnProperty('justapose')).toBe(false);
+  });
+  it('should return', () => {
+    expect(get.alice).toBe[0];
+    expect(get.rabbit).toBe[0];
+  });
+  it('should return', () => {
+    expect(get.alliance).toBe[1];
+    expect(get.hobbit).toBe[1];
+  });
+  it('should return', () => {
+    expect(get.alanta).toBe(undefined);
+    expect(get.Honda).toBe(undefined);
+  });
+});
 
 },{"../books.json":1,"../empty_book.json":2,"../got_books.json":3,"../invalid_book.json":4,"../invalid_content.json":5}]},{},[6]);
