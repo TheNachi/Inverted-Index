@@ -8,9 +8,6 @@ app.controller('indexController', ($scope) => {
   $scope.titles = [];
   $scope.docCount = {};
 
-  /*
-   * Upload a valid JSON file
-   */
   $scope.uploadFile = (fileName, fileContent) => {
     if (fileName.toLowerCase().match(/\.json$/)) {
       const reader = new FileReader();
@@ -32,9 +29,6 @@ app.controller('indexController', ($scope) => {
     }
   };
 
-  /*
-   * Generates Index for a uploaded file
-   */
   $scope.createIndex = () => {
     $scope.showTable = true;
     $scope.searchResults = false;
@@ -64,9 +58,6 @@ app.controller('indexController', ($scope) => {
     }
   };
 
-  /*
-   * Search Files for specific terms
-   */
   $scope.search = () => {
     $scope.showTable = false;
     $scope.searchResults = true;
@@ -79,9 +70,6 @@ app.controller('indexController', ($scope) => {
     $scope.searchResult = index.searchIndex(fileSearch, searchValue);
   };
 
-  /*
-   * Modal Setup
-   */
   function status(msg) {
     $scope.message = msg;
     $('.modal').modal();
@@ -90,9 +78,6 @@ app.controller('indexController', ($scope) => {
 });
 
 
-/*
- * File Upload
- */
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('uploadJSON')
     .addEventListener('change', (e) => {

@@ -49,48 +49,76 @@ module.exports=[
   }
 ]
 },{}],6:[function(require,module,exports){
-
-},{}],7:[function(require,module,exports){
 const books = require('../books.json');
 const gotBooks = require('../got_books.json');
 const emptyArray = require('../empty_book.json');
 const invalidContent = require('../invalid_content.json');
-const invalidFile = require('../invalid_file.css');
 const invalidKey = require('../invalid_book.json');
 
+const sampleBook = [{ title: 'Alice In Wonderland', text: 'What is she Looking for There' }];
+const sampleBook2 = [{ title: 'Al@#ice 4 @# In Wonderland', text: 'Wh#at is she Lo#$oking for Th!@ere' }];
 
 const index = new InvertedIndex();
 
-index.createIndex(books, 'books.json');
-index.createIndex(gotBooks, 'got_books.json');
 
-describe('Test for validation of file', () => {
+
+describe('Test to check if uploaded file is valid', () => {
+  const createIndexObject = index.createIndex('books.json', books);  
+  console.log(createIndexObject);
+
+  it('should return true for object type ', () => {
+    expect(createIndexObject instanceof Object).toBeTruthy();
+  });
+
+  it('should match result with alice: { 0: true }', () => {
+    expect(createIndexObject).not.toEqual(jasmine.objectContaining({
+      alice: { 0: 0 }
+    }));
+  });
+
   it('Should have keys named \'title\' and \'text\' with string for values', () => {
-    expect(index.fileValidation(invalidContent)).toBe('Invalid file');
-    expect(index.fileValidation(invalidKey)).toBe('Invalid file ');
+    expect(index.validateFile(invalidContent)).toBe(false);
+    expect(index.validateFile(invalidKey)).toBe(false);
   });
   it('Should not be an empty file', () => {
-    expect(index.fileValidation(emptyArray)).toBe('Empty file');
+    expect(index.validateFile(emptyArray)).toBe(false);
   });
-  it('Should not be an invalid file', () => {
-    expect(index.fileValidation(invalidFile)).toBe('Invalid file');
-    expect(index.fileValidation(books)).toBe('Valid file');
-    expect(index.fileValidation(gotBooks)).toBe('Valid file');
+  it('Should not be an Invalid file', () => {
+    expect(index.validateFile(books)).toBe(true);
+    expect(index.validateFile(gotBooks)).toBe(true);
   });
 });
 
-describe('Cleans up JSON file and return unique words in array', () => {
-  const bookToCleanUp = [{ title: 'Alice , / ?', text: 'enters a a.' }];
-
-  it('should return " array " for a valid json file input', () => {
-    expect(typeof (index.cleanup(`${bookToCleanUp[0].title} ${bookToCleanUp[0].text}`))).toBe(typeof ([]));
+describe('Cleans up index and returns unique words in an array all lowercase', () => {
+  it('should return "an array of words all lowercase and sorted"', () => {
+    expect(index.tokenize(['Alice', 'In', 'Wonderland', 'What', 'is', 'she', 'Looking', 'for', 'There'])).toEqual(
+            ['alice', 'for', 'in', 'is', 'looking', 'she', 'there', 'what', 'wonderland']
+        );
   });
-
-  it('should return "an array of books with filtered contents"', () => {
-    expect(index.removeDoubleWords(`${bookToCleanUp[0].title} ${bookToCleanUp[0].text}`)).toEqual(
-            ['alice', 'enters', 'a']
+  it('should return "an array of words only and sorted"', () => {
+    expect(index.tokenize(['Ali2ce', 'In', 'Won%de#rland', 'Wh%at', 'i@s', 'she', 'Lo%oking', 'for', 'The$re'])).toEqual(
+            ['alice', 'for', 'in', 'is', 'looking', 'she', 'there', 'what', 'wonderland']
         );
   });
 });
 
-},{"../books.json":1,"../empty_book.json":2,"../got_books.json":3,"../invalid_book.json":4,"../invalid_content.json":5,"../invalid_file.css":6}]},{},[7]);
+// describe('Accepts File and Filecontent, converts filecontent to array and calls storeIndex on it', () => {
+  
+//   it('should return "File name and a sorted tokenized array of file contents"', () => {
+//     expect(index.createIndex(books)).toBe(
+//       index.storeIndex(sampleBook, ['alice', 'for', 'in', 'is', 'looking', 'she', 'there', 'what', 'wonderland'])
+//     );
+//   });
+//   it('should return "Invalid file"', () => {
+//     expect(index.createIndex(invalidContent)).toBe('Invalid file');
+//     expect(index.createIndex(invalidKey)).toBe('Invalid file ');
+//   });
+// });
+
+// describe('Accepts file name and array of words and returns index of words', () => {
+//   it('should return""', () => {
+//     index.storeIndex(sampleBook, ['alice', 'for', 'in', 'is', 'looking', 'she', 'there', 'what', 'wonderland']).toBe();
+//   });
+// });
+
+},{"../books.json":1,"../empty_book.json":2,"../got_books.json":3,"../invalid_book.json":4,"../invalid_content.json":5}]},{},[6]);

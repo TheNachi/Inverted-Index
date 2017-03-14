@@ -23,23 +23,25 @@
   <div class="karma-spec-as-html">
 <h1>Spec</h1><div class="suite">
 <ul>
-    <li class="suite">Test for validation of file
+    <li class="suite">Test to check if uploaded file is valid
       <ul>
-        <li class="failure">Should have keys named 'title' and 'text' with string for values</li>
-        <li class="failure">Should not be an empty file</li>
-        <li class="failure">Should not be an invalid file</li>
+        <li class="success">should return true for object type </li>
+        <li class="success">should match result with alice: { 0: true }</li>
+        <li class="success">Should have keys named 'title' and 'text' with string for values</li>
+        <li class="success">Should not be an empty file</li>
+        <li class="success">Should not be an Invalid file</li>
       </ul>
     </li>
-    <li class="suite">Cleans up JSON file and return unique words in array
+    <li class="suite">Cleans up index and returns unique words in an array all lowercase
       <ul>
-        <li class="failure">should return " array " for a valid json file input</li>
-        <li class="failure">should return "an array of books with filtered contents"</li>
+        <li class="success">should return "an array of words all lowercase and sorted"</li>
+        <li class="success">should return "an array of words only and sorted"</li>
       </ul>
     </li>
 </ul>
 </div>
 
-<p class="summaryOfTestRun">Chrome 56.0.2924 (Mac OS X 10.12.3): Executed 5 of 5 (5 FAILED) ERROR (0.01 secs / 0.003 secs)</p>
+<p class="summaryOfTestRun">Chrome 56.0.2924 (Mac OS X 10.12.3): Executed 7 of 7 SUCCESS (0.011 secs / 0.003 secs)</p>
 
   </div>
 </body>

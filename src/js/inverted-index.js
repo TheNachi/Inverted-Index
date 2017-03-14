@@ -1,59 +1,26 @@
-/**
- *
- *
- * @class InvertedIndex
- */
+
 class InvertedIndex {
 
-/**
- * Creates an instance of InvertedIndex.
- *
- * @memberOf InvertedIndex
- */
   constructor() {
     this.index = {};
   }
 
-/**
- *
- *
- * @param {any} indexes
- * @returns
- *
- * @memberOf InvertedIndex
- */
   tokenize(indexes) {
     return indexes.map(word => word.toLowerCase()
       .replace(/[^A-Za-z]/g, '')).sort();
   }
 
-/**
- *
- *
- * @param {any} fileName
- * @param {any} fileContent
- *
- * @memberOf InvertedIndex
- */
   createIndex(fileName, fileContent) {
     const completeIndex = [];
-    for (const value of fileContent) {
-      const title = value.title;
-      const text = value.text;
-      const mergeWords = `${title} ${text}`;
-      completeIndex.push(this.tokenize(mergeWords.split(' ')));
-    }
-    this.storeIndex(fileName, completeIndex);
-  }
-
-  /**
-   * Stores the File Index
-   *
-   * @param {String} fileName
-   * @param {String} fileContents
-   */
-  storeIndex(fileName, completeIndex) {
     const wordIndex = {};
+    if (this.validateFile(fileContent)) {
+      fileContent.forEach((value) => {
+        const title = value.title;
+        const text = value.text;
+        const mergeWords = `${title} ${text}`;
+        completeIndex.push(this.tokenize(mergeWords.split(' ')));
+      });
+    }
     for (const index in completeIndex) {
       const indexToInt = parseInt(index, 10);
       completeIndex[index].forEach((word) => {
@@ -69,67 +36,38 @@ class InvertedIndex {
     this.index[fileName] = wordIndex;
   }
 
-  /**
-   * Get File Index
-   *
-   * @param {String} fileName
-   * @return {Object} returns file contents
-   */
   getIndex(fileName) {
     return this.index[fileName];
   }
 
-  /**
-   * Search a File
-   *
-   * @param {String} fileName
-   * @param {String} terms
-   * @return {Object} returns search results
-   */
-  searchaFile(fileName, terms) {
-    const searchResult = {};
-    const tokenizeQuery = this.tokenize(terms);
-    const allFiles = this.index;
-
-    searchResult[fileName] = {};
-    tokenizeQuery.forEach((term) => {
-      if (allFiles[fileName][term]) {
-        searchResult[fileName][term] = allFiles[fileName][term];
-      } else {
-        searchResult[fileName][term] = [];
-      }
-    });
+  searchIndex(fileName, terms) {
+    const searchResult = [];
+    const search = {};
+    search[fileName] = {};
+    fileName = fileName || Object.keys(this.index);
+    if (this.index[fileName][terms]) {
+      search[fileName][terms] = this.index[fileName][terms];
+    }
+    searchResult.push(search);
     return searchResult;
   }
 
-  /**
-   * Search Index for 1 or multiple files
-   *
-   * @param {String} fileName
-   * @param {String} terms
-   * @return {Array} returns search results
-   */
-  searchIndex(fileName, terms) {
-    const searchResult = [];
-    const allFiles = this.index;
-    let query = [];
-
-    for (let i = 1; i < arguments.length; i += 1) {
-      if (Array.isArray(arguments[i])) {
-        query = query.concat(arguments[i]);
-      } else {
-        query.push(arguments[i]);
+  validateFile(file) {
+    this.file = file;
+    let check = true;
+    try {
+      const jsonFile = JSON.parse(JSON.stringify(this.file));
+      if (jsonFile.length === 0) {
+        check = false;
       }
+      jsonFile.forEach((key) => {
+        if (typeof key.title !== 'string' || typeof key.text !== 'string') {
+          check = false;
+        }
+      });
+    } catch (error) {
+      check = false;
     }
-    if (fileName === 'all') {
-      for (const file in allFiles) {
-        const search = this.searchaFile(file, query);
-        searchResult.push(search);
-      }
-    } else {
-      const search = this.searchaFile(fileName, query);
-      searchResult.push(search);
-    }
-    return searchResult;
+    return check;
   }
 }
