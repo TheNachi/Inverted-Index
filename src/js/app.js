@@ -62,17 +62,19 @@ app.controller('indexController', ($scope) => {
     $scope.showTable = false;
     $scope.searchResults = true;
     const searchValue = $scope.terms;
-    const fileSearch = $scope.selectedFile;
+    const fileSearch = $scope.searchFile;
 
     if (searchValue === '' || searchValue === undefined) {
       status('Enter at least a term');
     }
-    $scope.searchResult = index.searchIndex(fileSearch, searchValue);
+    const result = index.searchIndex(fileSearch, searchValue);
+    delete result[0].all;
+    $scope.searchResult = result;
   };
 
   function status(msg) {
     $scope.message = msg;
-    $('.modal').modal();
+    $('#myModal').modal();
     $scope.$apply();
   }
 });
@@ -81,9 +83,10 @@ app.controller('indexController', ($scope) => {
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('uploadJSON')
     .addEventListener('change', (e) => {
-      const fileContent = e.target.files[0];
-      const fileName = e.target.files[0].name;
-      angular.element(document.getElementById('uploadJSON'))
-        .scope().uploadFile(fileName, fileContent);
+      Object.keys(e.target.files).forEach((file) => {
+        const fileName = e.target.files[file].name;
+        angular.element(document.getElementById('uploadJSON'))
+          .scope().uploadFile(fileName, e.target.files[file]);
+      });
     });
 });
