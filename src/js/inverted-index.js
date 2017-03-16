@@ -72,7 +72,8 @@ class InvertedIndex {
         }
       });
     }
-    return this.index[fileName] = wordIndex;
+    this.index[fileName] = wordIndex;
+    return this.index[fileName];
   }
 
 /**
