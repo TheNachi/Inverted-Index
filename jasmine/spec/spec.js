@@ -18,12 +18,12 @@ describe('Validate File', () => {
 
 describe('Tokenize', () => {
   it('should return "an array of words all lowercase and sorted"', () => {
-    expect(index.tokenize(['Alice', 'In', 'Wonderland', 'What', 'is', 'she', 'Looking', 'for', 'There'])).toEqual(
+    expect(InvertedIndex.tokenize(['Alice', 'In', 'Wonderland', 'What', 'is', 'she', 'Looking', 'for', 'There'])).toEqual(
             ['alice', 'for', 'in', 'is', 'looking', 'she', 'there', 'what', 'wonderland']
         );
   });
   it('should return "an array of words only and sorted"', () => {
-    expect(index.tokenize(['Ali2ce', 'In', 'Won%de#rland', 'Wh%at', 'i@s', 'she', 'Lo%oking', 'for', 'The$re'])).toEqual(
+    expect(InvertedIndex.tokenize(['Ali2ce', 'In', 'Won%de#rland', 'Wh%at', 'i@s', 'she', 'Lo%oking', 'for', 'The$re'])).toEqual(
             ['alice', 'for', 'in', 'is', 'looking', 'she', 'there', 'what', 'wonderland']
         );
   });
