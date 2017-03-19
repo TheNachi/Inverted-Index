@@ -23,8 +23,11 @@ class InvertedIndex {
  * @memberOf InvertedIndex
  */
   static tokenize(words) {
-    return words.map(word => word.toLowerCase()
-      .replace(/[^A-Za-z]/g, '')).sort();
+    words = words.map(word => word.toLowerCase()
+      .replace(/[^A-Za-z]/g, ''))
+      .filter(String)
+      .sort();
+    return words.filter((item, index) => words.indexOf(item) === index);
   }
 
 /**
@@ -38,12 +41,12 @@ class InvertedIndex {
  */
   createIndex(fileName, fileContent) {
     const completeIndex = [];
-    if (this.validateFile(fileContent)) {
+    if (InvertedIndex.validateFile(fileContent)) {
       fileContent.forEach((value) => {
         const title = value.title;
         const text = value.text;
         const mergeWords = `${title} ${text}`;
-        completeIndex.push(InvertedIndex.tokenize(mergeWords.split(' ')));
+        return completeIndex.push(InvertedIndex.tokenize(mergeWords.split(' ')));
       });
     }
     return this.storeIndex(fileName, completeIndex);
@@ -60,9 +63,10 @@ class InvertedIndex {
  */
   storeIndex(fileName, completeIndex) {
     const wordIndex = {};
-    for (const index in completeIndex) {
-      const indexToInt = parseInt(index, 10);
-      completeIndex[index].forEach((word) => {
+
+    completeIndex.forEach((index) => {
+      index.forEach((word) => {
+        const indexToInt = completeIndex.indexOf(index);
         if (wordIndex[word]) {
           if (wordIndex[word].indexOf(indexToInt) === -1) {
             wordIndex[word].push(indexToInt);
@@ -71,7 +75,7 @@ class InvertedIndex {
           wordIndex[word] = [indexToInt];
         }
       });
-    }
+    });
     this.index[fileName] = wordIndex;
     return this.index[fileName];
   }
@@ -135,11 +139,11 @@ class InvertedIndex {
    *
    * @memberOf InvertedIndex
    */
-  validateFile(file) {
-    this.file = file;
+  static validateFile(file) {
+    // this.file = file;
     let check = true;
     try {
-      const jsonFile = JSON.parse(JSON.stringify(this.file));
+      const jsonFile = JSON.parse(JSON.stringify(file));
       if (jsonFile.length === 0) {
         check = false;
       }

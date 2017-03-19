@@ -1,18 +1,19 @@
 const books = require('../books.json');
-const gotBooks = require('../got_books.json');
-const emptyArray = require('../empty_book.json');
-const invalidContent = require('../invalid_content.json');
-const invalidKey = require('../invalid_book.json');
+const gotBooks = require('../gotBooks.json');
+const emptyBook = require('../emptyBook.json');
+const invalidContent = require('../invalidContent.json');
+const invalidBook = require('../invalidBook.json');
 
 const index = new InvertedIndex();
+const property = Object.prototype.hasOwnProperty;
 
 describe('Validate File', () => {
   it('checks to ensure validity of JSON file', () => {
-    expect(index.validateFile(invalidContent)).toBe(false);
-    expect(index.validateFile(invalidKey)).toBe(false);
-    expect(index.validateFile(emptyArray)).toBe(false);
-    expect(index.validateFile(books)).toBe(true);
-    expect(index.validateFile(gotBooks)).toBe(true);
+    expect(InvertedIndex.validateFile(invalidContent)).toBe(false);
+    expect(InvertedIndex.validateFile(invalidBook)).toBe(false);
+    expect(InvertedIndex.validateFile(emptyBook)).toBe(false);
+    expect(InvertedIndex.validateFile(books)).toBe(true);
+    expect(InvertedIndex.validateFile(gotBooks)).toBe(true);
   });
 });
 
@@ -29,6 +30,19 @@ describe('Tokenize', () => {
   });
 });
 
+// // bad
+// console.log(object.hasOwnProperty(key));
+
+// // good
+// console.log(Object.prototype.hasOwnProperty.call(object, key));
+
+// // best
+// const has = Object.prototype.hasOwnProperty; // cache the lookup once, in module scope.
+// /* or */
+// import has from 'has';
+// // ...
+// console.log(has.call(object, key));
+
 describe('createIndex ', () => {
   const createIndexObject = index.createIndex('books.json', books);
   it('should return "object" for type of createIndex', () => {
@@ -38,12 +52,12 @@ describe('createIndex ', () => {
     expect(typeof createIndexObject).not.toBe('array');
   });
   it('should return true for hasOwnProperty "alice and wonderland"', () => {
-    expect(createIndexObject.hasOwnProperty('alice')).toBe(true);
-    expect(createIndexObject.hasOwnProperty('wonderland')).toBe(true);
+    expect(property.call(createIndexObject, 'alice')).toBe(true);
+    expect(property.call(createIndexObject, 'wonderland')).toBe(true);
   });
   it('should return false for hasOwnProperty "elie and justapose"', () => {
-    expect(createIndexObject.hasOwnProperty('eiie')).toBe(false);
-    expect(createIndexObject.hasOwnProperty('justapose')).toBe(false);
+    expect(property.call(createIndexObject, 'eiie')).toBe(false);
+    expect(property.call(createIndexObject, 'justapose')).toBe(false);
   });
   it('should return 0 for createIndexObject.(alice and rabbit)', () => {
     expect(createIndexObject.alice).toBe[0];
@@ -110,12 +124,12 @@ describe('storeIndex', () => {
     expect(typeof search).not.toBe('string');
   });
   it('should return true for hasOwnProperty "falls and hole"', () => {
-    expect(search.hasOwnProperty('falls')).toBe(true);
-    expect(search.hasOwnProperty('hole')).toBe(true);
+    expect(property.call(search, 'falls')).toBe(true);
+    expect(property.call(search, 'hole')).toBe(true);
   });
   it('should return false for hasOwnProperty "minimal and sucks"', () => {
-    expect(search.hasOwnProperty('minimal')).toBe(false);
-    expect(search.hasOwnProperty('sucks')).toBe(false);
+    expect(property.call(search, 'minimal')).toBe(false);
+    expect(property.call(search, 'sucks')).toBe(false);
   });
   it('should return 0 for createIndexObject.(into and of)', () => {
     expect(search.into).toBe[0];
@@ -140,12 +154,12 @@ describe('getIndex', () => {
     expect(typeof get).not.toBe('integer');
   });
   it('should return true for hasOwnProperty "alice and wonderland"', () => {
-    expect(get.hasOwnProperty('alice')).toBe(true);
-    expect(get.hasOwnProperty('wonderland')).toBe(true);
+    expect(property.call(get, 'alice')).toBe(true);
+    expect(property.call(get, 'wonderland')).toBe(true);
   });
   it('should return false for hasOwnProperty "eiie and justapose"', () => {
-    expect(get.hasOwnProperty('eiie')).toBe(false);
-    expect(get.hasOwnProperty('justapose')).toBe(false);
+    expect(property.call(get, 'eiie')).toBe(false);
+    expect(property.call(get, 'justapose')).toBe(false);
   });
   it('should return 0 for createIndexObject.(alice and rabbit)', () => {
     expect(get.alice).toBe[0];
@@ -181,7 +195,6 @@ describe('searchIndex', () => {
     expect(search2[0].anja).toBe(undefined);
   });
   it('should expect "search for hole in all" to return [0]', () => {
-    console.log('here', search3[0]['books.json']);
     expect(search3[0]['books.json']).toBe[{ hole: [0] }];
   });
   it('should expect "search for debby in all" to return undefined', () => {

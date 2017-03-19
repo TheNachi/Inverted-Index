@@ -23,37 +23,15 @@
   <div class="karma-spec-as-html">
 <h1>Spec</h1><div class="suite">
 <ul>
-    <li class="suite">Validate File
-      <ul>
-        <li class="success">checks to ensure validity of JSON file</li>
-      </ul>
-    </li>
-    <li class="suite">Tokenize
-      <ul>
-        <li class="success">should return "an array of words all lowercase and sorted"</li>
-        <li class="success">should return "an array of words only and sorted"</li>
-      </ul>
-    </li>
-    <li class="suite">createIndex 
-      <ul>
-        <li class="success">should return "object" for type of createIndex</li>
-        <li class="success">should not be an array</li>
-        <li class="success">should return true for hasOwnProperty "alice and wonderland"</li>
-        <li class="success">should return false for hasOwnProperty "elie and justapose"</li>
-        <li class="success">should return 0 for createIndexObject.(alice and rabbit)</li>
-        <li class="success">should return 1 for createIndexObject.(alliance and hobbit)</li>
-        <li class="success">should return undefined for createIndexObject.(alanta and Honda)</li>
-      </ul>
-    </li>
     <li class="suite">storeIndex
       <ul>
+        <li class="success">should return undefined for createIndexObject.(darklord and nothing)</li>
         <li class="success">should return "object" for type of storeIndex</li>
         <li class="success">should not return true for object string</li>
         <li class="success">should return true for hasOwnProperty "falls and hole"</li>
         <li class="success">should return false for hasOwnProperty "minimal and sucks"</li>
         <li class="success">should return 0 for createIndexObject.(into and of)</li>
         <li class="success">should return 1 for createIndexObject.(lord and powerful)</li>
-        <li class="success">should return undefined for createIndexObject.(darklord and nothing)</li>
       </ul>
     </li>
     <li class="suite">getIndex
@@ -77,10 +55,32 @@
         <li class="success">should expect "search for debby in all" to return undefined</li>
       </ul>
     </li>
+    <li class="suite">Validate File
+      <ul>
+        <li class="success">checks to ensure validity of JSON file</li>
+      </ul>
+    </li>
+    <li class="suite">Tokenize
+      <ul>
+        <li class="success">should return "an array of words all lowercase and sorted"</li>
+        <li class="success">should return "an array of words only and sorted"</li>
+      </ul>
+    </li>
+    <li class="suite">createIndex 
+      <ul>
+        <li class="success">should return "object" for type of createIndex</li>
+        <li class="success">should not be an array</li>
+        <li class="success">should return true for hasOwnProperty "alice and wonderland"</li>
+        <li class="success">should return false for hasOwnProperty "elie and justapose"</li>
+        <li class="success">should return 0 for createIndexObject.(alice and rabbit)</li>
+        <li class="success">should return 1 for createIndexObject.(alliance and hobbit)</li>
+        <li class="success">should return undefined for createIndexObject.(alanta and Honda)</li>
+      </ul>
+    </li>
 </ul>
 </div>
 
-<p class="summaryOfTestRun">Chrome 56.0.2924 (Mac OS X 10.12.3): Executed 30 of 30 SUCCESS (0.124 secs / 0.043 secs)</p>
+<p class="summaryOfTestRun">Chrome 56.0.2924 (Mac OS X 10.12.3): Executed 30 of 30 SUCCESS (0.124 secs / 0.022 secs)</p>
 
   </div>
 </body>
