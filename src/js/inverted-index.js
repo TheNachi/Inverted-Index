@@ -140,7 +140,6 @@ class InvertedIndex {
    * @memberOf InvertedIndex
    */
   static validateFile(file) {
-    // this.file = file;
     let check = true;
     try {
       const jsonFile = JSON.parse(JSON.stringify(file));
