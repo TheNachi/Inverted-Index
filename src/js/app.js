@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const app = angular.module('myIndex', []);
 
 app.controller('indexController', ($scope) => {
@@ -7,6 +8,12 @@ app.controller('indexController', ($scope) => {
   $scope.searchResults = false;
   $scope.titles = [];
   $scope.docCount = {};
+
+  function status(msg) {
+    $scope.message = msg;
+    $('#myModal').modal();
+    $scope.$apply();
+  }
 
   $scope.uploadFile = (fileName, fileContent) => {
     if (fileName.toLowerCase().match(/\.json$/)) {
@@ -34,7 +41,7 @@ app.controller('indexController', ($scope) => {
     $scope.searchResults = false;
     const fileSearch = $scope.selectedFile;
 
-    if (fileSearch == 'all') {
+    if (fileSearch === 'all') {
       $scope.filedata = '';
       status('Select a file to generate index');
       return;
@@ -71,12 +78,6 @@ app.controller('indexController', ($scope) => {
     delete result[0].all;
     $scope.searchResult = result;
   };
-
-  function status(msg) {
-    $scope.message = msg;
-    $('#myModal').modal();
-    $scope.$apply();
-  }
 });
 
 

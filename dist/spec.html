@@ -23,64 +23,63 @@
   <div class="karma-spec-as-html">
 <h1>Spec</h1><div class="suite">
 <ul>
-    <li class="suite">storeIndex
-      <ul>
-        <li class="success">should return undefined for createIndexObject.(darklord and nothing)</li>
-        <li class="success">should return "object" for type of storeIndex</li>
-        <li class="success">should not return true for object string</li>
-        <li class="success">should return true for hasOwnProperty "falls and hole"</li>
-        <li class="success">should return false for hasOwnProperty "minimal and sucks"</li>
-        <li class="success">should return 0 for createIndexObject.(into and of)</li>
-        <li class="success">should return 1 for createIndexObject.(lord and powerful)</li>
-      </ul>
-    </li>
-    <li class="suite">getIndex
-      <ul>
-        <li class="success">should return true for object type </li>
-        <li class="success">should not return true for integer type </li>
-        <li class="success">should return true for hasOwnProperty "alice and wonderland"</li>
-        <li class="success">should return false for hasOwnProperty "eiie and justapose"</li>
-        <li class="success">should return 0 for createIndexObject.(alice and rabbit)</li>
-        <li class="success">should return 1 for createIndexObject.(alliance and hobbit)</li>
-        <li class="success">should return undefined for createIndexObject.(alanta and honda)</li>
-      </ul>
-    </li>
-    <li class="suite">searchIndex
-      <ul>
-        <li class="success">should expect typeof to be array</li>
-        <li class="success">should expect typeof to be array</li>
-        <li class="success">should expect "alice" to be in books</li>
-        <li class="success">should expect "anja" not to be in books </li>
-        <li class="success">should expect "search for hole in all" to return [0]</li>
-        <li class="success">should expect "search for debby in all" to return undefined</li>
-      </ul>
-    </li>
     <li class="suite">Validate File
       <ul>
-        <li class="success">checks to ensure validity of JSON file</li>
+        <li class="success">checks to see if uploaded JSON file is the correct format</li>
       </ul>
     </li>
     <li class="suite">Tokenize
       <ul>
-        <li class="success">should return "an array of words all lowercase and sorted"</li>
-        <li class="success">should return "an array of words only and sorted"</li>
+        <li class="success">should be able to transform all words to lowercase and sort the words</li>
+        <li class="success">should be able to remove every symbol and special character</li>
       </ul>
     </li>
     <li class="suite">createIndex 
       <ul>
-        <li class="success">should return "object" for type of createIndex</li>
-        <li class="success">should not be an array</li>
-        <li class="success">should return true for hasOwnProperty "alice and wonderland"</li>
-        <li class="success">should return false for hasOwnProperty "elie and justapose"</li>
-        <li class="success">should return 0 for createIndexObject.(alice and rabbit)</li>
-        <li class="success">should return 1 for createIndexObject.(alliance and hobbit)</li>
-        <li class="success">should return undefined for createIndexObject.(alanta and Honda)</li>
+        <li class="success">should return an Object</li>
+        <li class="success">should not return an array</li>
+        <li class="success">should have properties "alice" and "wonderland"</li>
+        <li class="success">should not have properties "elie" and "justapose"</li>
+        <li class="success">should return 0 for properties "alice" and "rabbit"</li>
+        <li class="success">should return 1 for properties "alliance" and "hobbit"</li>
+        <li class="success">should return undefined for properties "alanta" and "Honda"</li>
+      </ul>
+    </li>
+    <li class="suite">storeIndex
+      <ul>
+        <li class="success">should return an Object</li>
+        <li class="success">should not return a string</li>
+        <li class="success">should have properties "falls" and "hole"</li>
+        <li class="success">should not have properties "minimal" and "sucks"</li>
+        <li class="success">should return 0 for properties "into" and "of"</li>
+        <li class="success">should return 1 for properties "lord" and "powerful"</li>
+        <li class="success">should return undefined for properties "darklord" and "nothing"</li>
+      </ul>
+    </li>
+    <li class="suite">getIndex
+      <ul>
+        <li class="success">should return an Object </li>
+        <li class="success">should not return an integer</li>
+        <li class="success">should have properties "alice" and "wonderland"</li>
+        <li class="success">should not have properties "eiie" and "justapose"</li>
+        <li class="success">should return 0 for properties "alice" and "rabbit"</li>
+        <li class="success">should return 1 for properties "alliance" and "hobbit"</li>
+        <li class="success">should return undefined for properties "alanta" and "honda"</li>
+      </ul>
+    </li>
+    <li class="suite">searchIndex
+      <ul>
+        <li class="success">should return an array</li>
+        <li class="success">should return 1 for search for "alice" in books</li>
+        <li class="success">should return undefined for search for "anja" in books </li>
+        <li class="success">should expect "hole" to be found when searching in "all"</li>
+        <li class="success">should expect "debby" not to be found when searching in "all"</li>
       </ul>
     </li>
 </ul>
 </div>
 
-<p class="summaryOfTestRun">Chrome 56.0.2924 (Mac OS X 10.12.3): Executed 30 of 30 SUCCESS (0.124 secs / 0.022 secs)</p>
+<p class="summaryOfTestRun">Chrome 56.0.2924 (Mac OS X 10.12.3): Executed 29 of 29 SUCCESS (0.095 secs / 0.011 secs)</p>
 
   </div>
 </body>

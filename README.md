@@ -4,10 +4,10 @@
 
 # INVERTED INDEX
 
-##Introduction
+## Introduction
 An application that builds an index from a JSON array of text objects books in a file and allows you search through the file for words in that array
 
-##Features
+## Features
 1. Uploads JSON file of the below format
 
 ```
@@ -34,10 +34,10 @@ An application that builds an index from a JSON array of text objects books in a
 4. Searchs indexed files for selected words
 
 
-##Why the project is useful
+## Why the project is useful
 This project enables you perform quick searches on json file of the above format
 
-##How to get started with the project
+## How to get started with the project
 
 ### Requirements
 * Gulp 
@@ -62,7 +62,7 @@ You can access the app on heroku at
 * Run tests with: `npm test`
 
 
-##Limitations of the project
+## Limitations of the project
 1. You can only upload json files of the above format
 
 ## Contributing to the project
@@ -76,6 +76,6 @@ You can access the app on heroku at
 ## Troubleshooting & FAQ
 
 
-##License
+## License
 Internet Systems Consortium (ISC)
 

@@ -15,10 +15,10 @@ class InvertedIndex {
   }
 
 /**
+ * Tokenizes an array of strings.
  *
- *
- * @param {array} words
- * @returns {array} Array of sorted words only
+ * @param {array} words - An array of string to tokenize
+ * @returns {array} Array of words without special character, whitespaces or symbols.
  *
  * @memberOf InvertedIndex
  */
@@ -31,11 +31,11 @@ class InvertedIndex {
   }
 
 /**
+ * Creates File Index
  *
- *
- * @param {string} fileName
- * @param {object} fileContent
- * @returns {storeIndex} storeIndex creates the index
+ * @param {string} fileName - Name of uploaded Json file.
+ * @param {object} fileContent - Content of uploaded Json file.
+ * @returns {object} Calling storeIndex function an Array of values from uploaded file.
  *
  * @memberOf InvertedIndex
  */
@@ -53,11 +53,11 @@ class InvertedIndex {
   }
 
 /**
+ * Stores the File Index
  *
- *
- * @param {string} fileName
- * @param {any} completeIndex
- * @returns {this.index} The stored index of a file
+ * @param {string} fileName - Name of uploaded Json file
+ * @param {array} completeIndex - An Array containing content of uploaded Json file
+ * @returns {object} The stored index of the file
  *
  * @memberOf InvertedIndex
  */
@@ -81,10 +81,10 @@ class InvertedIndex {
   }
 
 /**
+ * Get file Index
  *
- *
- * @param {any} fileName
- * @returns {this.index} stored index of the file
+ * @param {String} fileName - name of uploaded Json file
+ * @returns {object} stored index of the uploaded Json file
  *
  * @memberOf InvertedIndex
  */
@@ -93,11 +93,11 @@ class InvertedIndex {
   }
 
 /**
+ * Searches through one or multiple files for a word
  *
- *
- * @param {any} fileName
- * @param {any} term
- * @returns {object} Filename and searchResult
+ * @param {String} fileName
+ * @param {String} term
+ * @returns {Array} Returns search result
  *
  * @memberOf InvertedIndex
  */
@@ -132,10 +132,10 @@ class InvertedIndex {
   }
 
   /**
+   * Checks for file Validity
    *
-   *
-   * @param {any} file
-   * @returns {boolean} true or false depending on validity of file
+   * @param {JSON} file
+   * @returns {boolean} Validity of uploaded file
    *
    * @memberOf InvertedIndex
    */
