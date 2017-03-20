@@ -28,7 +28,7 @@ gulp.task('default', [
 ]);
 
 gulp.task('browserify', () =>
-  browserify('./jasmine/spec/spec.js')
+  browserify('./jasmine/spec/invertedindex.test.js')
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./jasmine/testfiles'))

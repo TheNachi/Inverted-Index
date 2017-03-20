@@ -25,46 +25,46 @@
 <ul>
     <li class="suite">Validate File
       <ul>
-        <li class="success">checks to see if uploaded JSON file is the correct format</li>
+        <li class="success">checks the validaity of uploaded JSON file</li>
       </ul>
     </li>
     <li class="suite">Tokenize
       <ul>
-        <li class="success">should be able to transform all words to lowercase and sort the words</li>
-        <li class="success">should be able to remove every symbol and special character</li>
+        <li class="success">should transform all words to lowercase and sort the words</li>
+        <li class="success">should remove every special character</li>
       </ul>
     </li>
     <li class="suite">createIndex 
       <ul>
         <li class="success">should return an Object</li>
         <li class="success">should not return an array</li>
-        <li class="success">should have properties "alice" and "wonderland"</li>
-        <li class="success">should not have properties "elie" and "justapose"</li>
-        <li class="success">should return 0 for properties "alice" and "rabbit"</li>
-        <li class="success">should return 1 for properties "alliance" and "hobbit"</li>
-        <li class="success">should return undefined for properties "alanta" and "Honda"</li>
+        <li class="success">should return true for values "alice" and "wonderland"</li>
+        <li class="success">should return false for values "elie" and "justapose"</li>
+        <li class="success">should return 0 for values "alice" and "rabbit"</li>
+        <li class="success">should return 1 for values "alliance" and "hobbit"</li>
+        <li class="success">should return undefined for values "alanta" and "Honda"</li>
       </ul>
     </li>
     <li class="suite">storeIndex
       <ul>
         <li class="success">should return an Object</li>
         <li class="success">should not return a string</li>
-        <li class="success">should have properties "falls" and "hole"</li>
-        <li class="success">should not have properties "minimal" and "sucks"</li>
-        <li class="success">should return 0 for properties "into" and "of"</li>
-        <li class="success">should return 1 for properties "lord" and "powerful"</li>
-        <li class="success">should return undefined for properties "darklord" and "nothing"</li>
+        <li class="success">should return true for values "falls" and "hole"</li>
+        <li class="success">should return false for values "minimal" and "sucks"</li>
+        <li class="success">should return 0 for values "into" and "of"</li>
+        <li class="success">should return 1 for values "lord" and "powerful"</li>
+        <li class="success">should return undefined for values "darklord" and "nothing"</li>
       </ul>
     </li>
     <li class="suite">getIndex
       <ul>
         <li class="success">should return an Object </li>
         <li class="success">should not return an integer</li>
-        <li class="success">should have properties "alice" and "wonderland"</li>
-        <li class="success">should not have properties "eiie" and "justapose"</li>
-        <li class="success">should return 0 for properties "alice" and "rabbit"</li>
-        <li class="success">should return 1 for properties "alliance" and "hobbit"</li>
-        <li class="success">should return undefined for properties "alanta" and "honda"</li>
+        <li class="success">should return true for values "alice" and "wonderland"</li>
+        <li class="success">should return false for values "eiie" and "justapose"</li>
+        <li class="success">should return 0 for values "alice" and "rabbit"</li>
+        <li class="success">should return 1 for values "alliance" and "hobbit"</li>
+        <li class="success">should return undefined for values "alanta" and "honda"</li>
       </ul>
     </li>
     <li class="suite">searchIndex
@@ -79,7 +79,7 @@
 </ul>
 </div>
 
-<p class="summaryOfTestRun">Chrome 56.0.2924 (Mac OS X 10.12.3): Executed 29 of 29 SUCCESS (0.027 secs / 0.007 secs)</p>
+<p class="summaryOfTestRun">Chrome 56.0.2924 (Mac OS X 10.12.3): Executed 29 of 29 SUCCESS (0.049 secs / 0.011 secs)</p>
 
   </div>
 </body>
