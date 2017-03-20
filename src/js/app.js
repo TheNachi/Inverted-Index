@@ -9,6 +9,12 @@ app.controller('indexController', ($scope) => {
   $scope.titles = [];
   $scope.docCount = {};
 
+  /**
+   *
+   *
+   * @param {any} msg
+   * @returns {error} msg
+   */
   function status(msg) {
     $scope.message = msg;
     $('#myModal').modal();
