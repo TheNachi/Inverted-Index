@@ -19,7 +19,7 @@ describe('Validate File', () => {
 });
 
 describe('Tokenize', () => {
-  it('should transform all words to lowercase and sort the words', () => {
+  it('should transform all words to lowercase', () => {
     expect(InvertedIndex.tokenize(['Alice', 'In', 'Wonderland',
       'What', 'is', 'she', 'Looking', 'for', 'There'])).toEqual(
       ['alice', 'for', 'in', 'is', 'looking',
