@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Wed Feb 22 2017 17:26:13 GMT+0100 (W. Central Africa Standard Time)
+// Generated on Thu Mar 09 2017 15:39:30 GMT+0100 (WAT)
 
 module.exports = function(config) {
   config.set({
@@ -15,9 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '"src/js/invertedindex.js',
-      './src/js/invertedindex.js',
-      './jasmine/spec/spec.js'
+      'src/js/inverted-index.js',
+      'jasmine/testfiles/bundle.js'
     ],
 
 
@@ -29,13 +28,24 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'src/js/inverted-index.js': ['coverage']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'verbose', 'coverage', 'spec-as-html'],
+
+    coverageReporter: {
+      type: 'lcov',
+      dir: 'coverage/'
+    },
+
+    specAsHtmlReporter: {
+      dir: 'dist',
+      outputFile: 'spec.html'
+    },
 
 
     // web server port
