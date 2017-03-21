@@ -3,3 +3,4 @@ debug.log
 npm-debug.log
 .DS_Store
 src/js/invertedindex.js
+coverage/

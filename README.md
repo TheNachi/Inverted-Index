@@ -40,14 +40,8 @@ This project enables you perform quick searches on json file of the above format
 ## How to get started with the project
 
 ### Requirements
-* Gulp 
-* Karma 
-* Jasmine 
-* Travis CI 
-* Coveralls 
-* Hound 
-* AngularJs 
-* Bootstrap 
+* Node
+* Git
 
 ### Setting up the project 
 #### On the web
