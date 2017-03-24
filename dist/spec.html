@@ -25,12 +25,12 @@
 <ul>
     <li class="suite">Validate File
       <ul>
-        <li class="success">checks the validaity of uploaded JSON file</li>
+        <li class="success">checks the validity of uploaded JSON file</li>
       </ul>
     </li>
     <li class="suite">Tokenize
       <ul>
-        <li class="success">should transform all words to lowercase and sort the words</li>
+        <li class="success">should transform all words to lowercase</li>
         <li class="success">should remove every special character</li>
       </ul>
     </li>
@@ -42,7 +42,7 @@
         <li class="success">should return false for values "elie" and "justapose"</li>
         <li class="success">should return 0 for values "alice" and "rabbit"</li>
         <li class="success">should return 1 for values "alliance" and "hobbit"</li>
-        <li class="success">should return undefined for values "alanta" and "Honda"</li>
+        <li class="success">should not create index of words not in document</li>
       </ul>
     </li>
     <li class="suite">storeIndex
@@ -53,7 +53,7 @@
         <li class="success">should return false for values "minimal" and "sucks"</li>
         <li class="success">should return 0 for values "into" and "of"</li>
         <li class="success">should return 1 for values "lord" and "powerful"</li>
-        <li class="success">should return undefined for values "darklord" and "nothing"</li>
+        <li class="success">should not have index of words not in document stored</li>
       </ul>
     </li>
     <li class="suite">getIndex
@@ -64,7 +64,7 @@
         <li class="success">should return false for values "eiie" and "justapose"</li>
         <li class="success">should return 0 for values "alice" and "rabbit"</li>
         <li class="success">should return 1 for values "alliance" and "hobbit"</li>
-        <li class="success">should return undefined for values "alanta" and "honda"</li>
+        <li class="success">should not get index of words not in document</li>
       </ul>
     </li>
     <li class="suite">searchIndex
@@ -79,7 +79,7 @@
 </ul>
 </div>
 
-<p class="summaryOfTestRun">Chrome 56.0.2924 (Mac OS X 10.12.3): Executed 29 of 29 SUCCESS (0.049 secs / 0.011 secs)</p>
+<p class="summaryOfTestRun">Chrome 56.0.2924 (Mac OS X 10.12.3): Executed 29 of 29 SUCCESS (0.112 secs / 0.045 secs)</p>
 
   </div>
 </body>

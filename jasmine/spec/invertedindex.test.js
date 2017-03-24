@@ -9,7 +9,7 @@ const index = new InvertedIndex();
 const property = Object.prototype.hasOwnProperty;
 
 describe('Validate File', () => {
-  it('checks the validaity of uploaded JSON file', () => {
+  it('checks the validity of uploaded JSON file', () => {
     expect(InvertedIndex.validateFile(invalidContent)).toBe(false);
     expect(InvertedIndex.validateFile(invalidBook)).toBe(false);
     expect(InvertedIndex.validateFile(emptyBook)).toBe(false);
@@ -41,7 +41,7 @@ describe('createIndex ', () => {
     expect(typeof createIndexObject).toBe('object');
   });
   it('should not return an array', () => {
-    expect(typeof createIndexObject).not.toBe('array');
+    expect(Array.isArray(createIndexObject)).not.toBe('array');
   });
   it('should return true for values "alice" and "wonderland"', () => {
     expect(property.call(createIndexObject, 'alice')).toBe(true);
@@ -59,7 +59,7 @@ describe('createIndex ', () => {
     expect(createIndexObject.alliance).toBe[1];
     expect(createIndexObject.hobbit).toBe[1];
   });
-  it('should return undefined for values "alanta" and "Honda"', () => {
+  it('should not create index of words not in document', () => {
     expect(createIndexObject.alanta).toBe(undefined);
     expect(createIndexObject.Honda).toBe(undefined);
   });
@@ -108,32 +108,32 @@ describe('storeIndex', () => {
     'to',
     'unusual',
     'wizard']];
-  const search = index.storeIndex(books, bookArray);
+  const stored = index.storeIndex(books, bookArray);
   it('should return an Object', () => {
-    expect(typeof search).toBe('object');
+    expect(typeof stored).toBe('object');
   });
   it('should not return a string', () => {
-    expect(typeof search).not.toBe('string');
+    expect(typeof stored).not.toBe('string');
   });
   it('should return true for values "falls" and "hole"', () => {
-    expect(property.call(search, 'falls')).toBe(true);
-    expect(property.call(search, 'hole')).toBe(true);
+    expect(property.call(stored, 'falls')).toBe(true);
+    expect(property.call(stored, 'hole')).toBe(true);
   });
   it('should return false for values "minimal" and "sucks"', () => {
-    expect(property.call(search, 'minimal')).toBe(false);
-    expect(property.call(search, 'sucks')).toBe(false);
+    expect(property.call(stored, 'minimal')).toBe(false);
+    expect(property.call(stored, 'sucks')).toBe(false);
   });
   it('should return 0 for values "into" and "of"', () => {
-    expect(search.into).toBe[0];
-    expect(search.of).toBe[0];
+    expect(stored.into).toBe[0];
+    expect(stored.of).toBe[0];
   });
   it('should return 1 for values "lord" and "powerful"', () => {
-    expect(search.lord).toBe[1];
-    expect(search.powerful).toBe[1];
+    expect(stored.lord).toBe[1];
+    expect(stored.powerful).toBe[1];
   });
-  it('should return undefined for values "darklord" and "nothing"', () => {
-    expect(search.darklord).toBe(undefined);
-    expect(search.nothing).toBe(undefined);
+  it('should not have index of words not in document stored', () => {
+    expect(stored.darklord).toBe(undefined);
+    expect(stored.nothing).toBe(undefined);
   });
 });
 
@@ -161,7 +161,7 @@ describe('getIndex', () => {
     expect(get.alliance).toBe[1];
     expect(get.hobbit).toBe[1];
   });
-  it('should return undefined for values "alanta" and "honda"', () => {
+  it('should not get index of words not in document', () => {
     expect(get.alanta).toBe(undefined);
     expect(get.Honda).toBe(undefined);
   });
